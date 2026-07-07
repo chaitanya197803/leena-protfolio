@@ -53,21 +53,21 @@ export default function Education() {
               const isEven = index % 2 === 0;
 
               return (
-                <div key={index} className="relative flex flex-col md:flex-row items-stretch">
+                <div key={index} className="relative flex flex-col md:flex-row items-center">
                   {/* Timeline Dot */}
-                  <div className="absolute left-4 md:left-1/2 top-0 -translate-x-1/2 w-8 h-8 rounded-full bg-white border-2 border-primary flex items-center justify-center shadow-md z-10">
+                  <div className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 w-8 h-8 rounded-full bg-white border-2 border-primary flex items-center justify-center shadow-md z-10">
                     <GraduationCap className="w-4 h-4 text-primary" />
                   </div>
 
-                  {/* Spacer or Content depending on left/right alignment */}
-                  <div className="flex-1 md:pr-12 md:text-right hidden md:block">
-                    {isEven && (
+                  {/* Left block (Desktop only for even items) */}
+                  <div className="flex-1 md:pr-10 text-right hidden md:block">
+                    {isEven ? (
                       <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: '-50px' }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-                        className="p-6 rounded-2xl border border-slate-100 shadow-sm bg-white glass-card"
+                        transition={{ type: 'spring' as const, stiffness: 100, damping: 15 }}
+                        className="p-6 rounded-2xl border border-slate-100 shadow-sm bg-white glass-card text-left"
                       >
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-primary bg-primary/10 mb-3">
                           <Calendar className="w-3.5 h-3.5" />
@@ -76,7 +76,7 @@ export default function Education() {
                         <h3 className="text-lg font-bold text-text-main">{edu.degree}</h3>
                         <p className="text-primary font-medium text-sm mt-0.5">{edu.institution}</p>
                         {edu.stream && <p className="text-xs text-paragraph mt-1">{edu.stream}</p>}
-                        <div className="flex items-center justify-end gap-1 text-xs text-accent font-bold mt-2">
+                        <div className="flex items-center gap-1 text-xs text-accent font-bold mt-2">
                           <Award className="w-4 h-4" />
                           <span>Score: {edu.performance}</span>
                         </div>
@@ -86,76 +86,43 @@ export default function Education() {
                           </p>
                         )}
                       </motion.div>
+                    ) : (
+                      /* Empty spacer to keep grid symmetry on desktop */
+                      <div className="h-full w-full" />
                     )}
                   </div>
 
-                  {/* Center Node gap space */}
+                  {/* Spacer for center dot alignment (Desktop only) */}
                   <div className="w-8 hidden md:block" />
 
-                  {/* Spacer or Content */}
-                  <div className="flex-1 md:pl-12 pl-10">
-                    {(!isEven || typeof window !== 'undefined') && (
-                      <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: '-50px' }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-                        // Force render on mobile even if even
-                        className={`p-6 rounded-2xl border border-slate-100 shadow-sm bg-white glass-card ${
-                          isEven ? 'md:hidden' : ''
-                        }`}
-                      >
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-primary bg-primary/10 mb-3">
-                          <Calendar className="w-3.5 h-3.5" />
-                          {edu.period}
-                        </span>
-                        <h3 className="text-lg font-bold text-text-main">{edu.degree}</h3>
-                        <p className="text-primary font-medium text-sm mt-0.5">{edu.institution}</p>
-                        {edu.stream && <p className="text-xs text-paragraph mt-1">{edu.stream}</p>}
-                        <div className="flex items-center gap-1 text-xs text-accent font-bold mt-2">
-                          <Award className="w-4 h-4" />
-                          <span>Score: {edu.performance}</span>
-                        </div>
-                        {edu.description && (
-                          <p className="text-xs text-paragraph leading-relaxed border-t border-slate-50 pt-3 mt-3">
-                            {edu.description}
-                          </p>
-                        )}
-                      </motion.div>
-                    )}
-
-                    {/* Desktop counterpart for odd index */}
-                    {!isEven && (
-                      <div className="hidden" /> // Spacer placeholder
-                    )}
-
-                    {/* Mobile fallback layout for even items */}
-                    {isEven && (
-                      <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: '-50px' }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-                        className="p-6 rounded-2xl border border-slate-100 shadow-sm bg-white glass-card hidden md:block"
-                      >
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-primary bg-primary/10 mb-3">
-                          <Calendar className="w-3.5 h-3.5" />
-                          {edu.period}
-                        </span>
-                        <h3 className="text-lg font-bold text-text-main">{edu.degree}</h3>
-                        <p className="text-primary font-medium text-sm mt-0.5">{edu.institution}</p>
-                        {edu.stream && <p className="text-xs text-paragraph mt-1">{edu.stream}</p>}
-                        <div className="flex items-center gap-1 text-xs text-accent font-bold mt-2">
-                          <Award className="w-4 h-4" />
-                          <span>Score: {edu.performance}</span>
-                        </div>
-                        {edu.description && (
-                          <p className="text-xs text-paragraph leading-relaxed border-t border-slate-50 pt-3 mt-3">
-                            {edu.description}
-                          </p>
-                        )}
-                      </motion.div>
-                    )}
+                  {/* Right block (Desktop for odd items, Mobile for all items) */}
+                  <div className="flex-1 md:pl-10 pl-12 w-full">
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ type: 'spring' as const, stiffness: 100, damping: 15 }}
+                      className={`p-6 rounded-2xl border border-slate-100 shadow-sm bg-white glass-card ${
+                        isEven ? 'md:hidden' : ''
+                      }`}
+                    >
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-primary bg-primary/10 mb-3">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {edu.period}
+                      </span>
+                      <h3 className="text-lg font-bold text-text-main">{edu.degree}</h3>
+                      <p className="text-primary font-medium text-sm mt-0.5">{edu.institution}</p>
+                      {edu.stream && <p className="text-xs text-paragraph mt-1">{edu.stream}</p>}
+                      <div className="flex items-center gap-1 text-xs text-accent font-bold mt-2">
+                        <Award className="w-4 h-4" />
+                        <span>Score: {edu.performance}</span>
+                      </div>
+                      {edu.description && (
+                        <p className="text-xs text-paragraph leading-relaxed border-t border-slate-50 pt-3 mt-3">
+                          {edu.description}
+                        </p>
+                      )}
+                    </motion.div>
                   </div>
                 </div>
               );
