@@ -158,7 +158,7 @@ export default function Hero() {
             >
               <div className="w-full h-full rounded-full bg-white p-1 overflow-hidden relative">
                 <Image
-                  src="/profile.png"
+                  src="/profile2.png"
                   alt="Leena Singh Profile"
                   fill
                   priority

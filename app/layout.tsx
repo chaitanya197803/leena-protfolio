@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Leena Singh' }],
   icons: {
-    icon: '/profile.png',
-    apple: '/profile.png',
+    icon: '/profile2.png',
+    apple: '/profile2.png',
   },
   openGraph: {
     title: 'Leena Singh | Portfolio',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Leena Singh Portfolio',
     images: [
       {
-        url: '/profile.png',
+        url: '/profile2.png',
         width: 800,
         height: 800,
         alt: 'Leena Singh Profile Picture',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Leena Singh | Portfolio',
     description: 'Official portfolio of Leena Singh, B.Sc Graduate, Content Writer, School Teacher, and Computer Operator from Durg, Chhattisgarh.',
-    images: ['/profile.png'],
+    images: ['/profile2.png'],
   },
   robots: {
     index: true,
@@ -78,18 +78,18 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col relative text-text-main bg-white">
         {/* Dynamic Background */}
         <ThreeBackground />
-        
+
         {/* Layout Indicators & Helpers */}
         <ScrollProgress />
         <CustomCursor />
         <BackToTop />
-        
+
         {/* Sticky Header */}
         <Navbar />
-        
+
         {/* Main Content Area */}
         <main className="flex-1 w-full relative z-10">{children}</main>
-        
+
         {/* Footer */}
         <Footer />
       </body>

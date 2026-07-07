@@ -57,7 +57,7 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="relative w-full h-full rounded-xl overflow-hidden">
                 <Image
-                  src="/profile.png"
+                  src="/profile2.png"
                   alt="Leena Portrait"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
